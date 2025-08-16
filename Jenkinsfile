@@ -1,0 +1,25 @@
+pipeline {
+
+    agent any
+    stages{
+         
+         stage('Clone Repo'){
+             steps {git 'https://github.com/drashya03/WeatherApp.git'}
+         }
+         
+         stage('Build Docker Image') {
+             steps { sh 'docker build -t drashyamalot/weather-app .' }
+
+}
+         stage('Push to Docker hub') {
+             steps { sh 'docker push drashyamalot/weather-app' }
+}
+         stage('remove container'){
+             steps { sh 'docker rm -f weather'}
+}
+
+         stage('launch container') {
+             steps { sh 'docker run -d -p 8081:80 --name weather drashyamalot/weather-app'}
+}
+}
+}
