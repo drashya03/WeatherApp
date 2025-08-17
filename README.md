@@ -47,7 +47,7 @@ kubectl expose deployment weatherapp --type loadbalancer --port 80
 
 
 
-## Note
+## Note:
 
 If using k8s manifest file use:
 ```bash
