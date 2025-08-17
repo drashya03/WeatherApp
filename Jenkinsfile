@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t drashyamalot/weather-app .'
+                sh 'docker build -t drashyamalot/weather-app:latest .'
             }
         }
 
@@ -19,8 +19,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh '''
                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                       docker push drashyamalot/weather-app
-'''
+                       docker push drashyamalot/weather-app:latest'''
                 }
             }
         }
@@ -33,7 +32,7 @@ pipeline {
 
         stage('Launch Container') {
             steps {
-                sh 'docker run -d -p 8081:80 --name weather drashyamalot/weather-app'
+                sh 'docker run -d -p 8081:80 --name weather drashyamalot/weather-app:latest'
             }
         }
     }
