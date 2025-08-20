@@ -3,22 +3,29 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: weatherapp001
-  name: weatherapp001
+    app: weatherapp05
+  name: weatherapp05
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: weatherapp001
+      app: weatherapp05
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: weatherapp001
+        app: weatherapp05
     spec:
       containers:
       - image: drashyamalot/weather-app:latest
         name: weather-app
-        resources: {}
+        resources:
+         requests:
+          cpu: "100m"
+          memory: "128Mi"  # Minimum CPU requested by the pod
+         limits:
+          cpu: "200m"
+          memory: "256Mi"
+
 status: {}
