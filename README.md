@@ -59,3 +59,9 @@ kubectl apply -f hpa.yml
 
 ## 7. Project Flow Diagram
 GitHub Repo → Jenkins → Docker Hub → AWS EKS (K8s Deployment) → LoadBalancer (Service) → Autoscaling (HPA)
+
+
+
+
+create deployment weatherapp001 --image=drashyamalot/weather-app:latest --dry-run -o yaml > mydeploy123.yml
+W0817 15:22:57.953757   32972 helpers.go:703] --dry-run is deprecated and can be replaced with --dry-run=client.
